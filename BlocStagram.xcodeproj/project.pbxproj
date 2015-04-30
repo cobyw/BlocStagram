@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB3DCE091AF1CE5900251A4B /* BLCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DCE081AF1CE5900251A4B /* BLCUser.m */; };
+		CB3DCE0C1AF1CF4900251A4B /* BLCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DCE0B1AF1CF4900251A4B /* BLCMedia.m */; };
+		CB3DCE0F1AF1D0BA00251A4B /* BLCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DCE0E1AF1D0BA00251A4B /* BLCComment.m */; };
+		CB3DCE121AF1D14900251A4B /* BLCDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3DCE111AF1D14900251A4B /* BLCDatasource.m */; };
 		CB6FAD841ACDB5F900E337C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6FAD831ACDB5F900E337C7 /* main.m */; };
 		CB6FAD871ACDB5F900E337C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6FAD861ACDB5F900E337C7 /* AppDelegate.m */; };
 		CB6FAD8A1ACDB5F900E337C7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6FAD891ACDB5F900E337C7 /* ViewController.m */; };
@@ -37,6 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB3DCE071AF1CE5900251A4B /* BLCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCUser.h; sourceTree = "<group>"; };
+		CB3DCE081AF1CE5900251A4B /* BLCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCUser.m; sourceTree = "<group>"; };
+		CB3DCE0A1AF1CF4900251A4B /* BLCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMedia.h; sourceTree = "<group>"; };
+		CB3DCE0B1AF1CF4900251A4B /* BLCMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCMedia.m; sourceTree = "<group>"; };
+		CB3DCE0D1AF1D0BA00251A4B /* BLCComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCComment.h; sourceTree = "<group>"; };
+		CB3DCE0E1AF1D0BA00251A4B /* BLCComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCComment.m; sourceTree = "<group>"; };
+		CB3DCE101AF1D14900251A4B /* BLCDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCDatasource.h; sourceTree = "<group>"; };
+		CB3DCE111AF1D14900251A4B /* BLCDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCDatasource.m; sourceTree = "<group>"; };
 		CB6FAD7E1ACDB5F900E337C7 /* BlocStagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocStagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6FAD821ACDB5F900E337C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB6FAD831ACDB5F900E337C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -48,7 +60,7 @@
 		CB6FAD971ACDB5FA00E337C7 /* BlocStagramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocStagramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6FAD9C1ACDB5FA00E337C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB6FAD9D1ACDB5FA00E337C7 /* BlocStagramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocStagramTests.m; sourceTree = "<group>"; };
-		CB6FADA71ACDB7BE00E337C7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CB6FADA71ACDB7BE00E337C7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		CB6FADAA1ACDB8AF00E337C7 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		CB6FADAB1ACDB8AF00E337C7 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		CB6FADAC1ACDB8AF00E337C7 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -84,7 +96,6 @@
 		CB6FAD751ACDB5F900E337C7 = {
 			isa = PBXGroup;
 			children = (
-				CB6FADA71ACDB7BE00E337C7 /* Default-568h@2x.png */,
 				CB6FAD801ACDB5F900E337C7 /* BlocStagram */,
 				CB6FAD9A1ACDB5FA00E337C7 /* BlocStagramTests */,
 				CB6FAD7F1ACDB5F900E337C7 /* Products */,
@@ -103,6 +114,15 @@
 		CB6FAD801ACDB5F900E337C7 /* BlocStagram */ = {
 			isa = PBXGroup;
 			children = (
+				CB3DCE071AF1CE5900251A4B /* BLCUser.h */,
+				CB3DCE0A1AF1CF4900251A4B /* BLCMedia.h */,
+				CB3DCE0B1AF1CF4900251A4B /* BLCMedia.m */,
+				CB3DCE0D1AF1D0BA00251A4B /* BLCComment.h */,
+				CB3DCE0E1AF1D0BA00251A4B /* BLCComment.m */,
+				CB3DCE101AF1D14900251A4B /* BLCDatasource.h */,
+				CB3DCE111AF1D14900251A4B /* BLCDatasource.m */,
+				CB3DCE081AF1CE5900251A4B /* BLCUser.m */,
+				CB6FADA71ACDB7BE00E337C7 /* Default-568h@2x.png */,
 				CB6FADA91ACDB83B00E337C7 /* Images */,
 				CB6FAD851ACDB5F900E337C7 /* AppDelegate.h */,
 				CB6FAD861ACDB5F900E337C7 /* AppDelegate.m */,
@@ -271,8 +291,12 @@
 			files = (
 				CB6FAD8A1ACDB5F900E337C7 /* ViewController.m in Sources */,
 				CB6FAD871ACDB5F900E337C7 /* AppDelegate.m in Sources */,
+				CB3DCE0C1AF1CF4900251A4B /* BLCMedia.m in Sources */,
 				CB6FAD841ACDB5F900E337C7 /* main.m in Sources */,
 				CB70736F1AE1A91400B3B88E /* ImagesTableViewController.m in Sources */,
+				CB3DCE091AF1CE5900251A4B /* BLCUser.m in Sources */,
+				CB3DCE121AF1D14900251A4B /* BLCDatasource.m in Sources */,
+				CB3DCE0F1AF1D0BA00251A4B /* BLCComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
