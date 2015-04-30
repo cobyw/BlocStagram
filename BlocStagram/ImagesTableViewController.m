@@ -68,7 +68,7 @@
         [cell.contentView addSubview:imageView];
     }
     
-    BLCMedia *item = [BLCDatasource sharedInstace].mediaItems[indexPath.row];
+    BLCMedia *item = [self items][indexPath.row];
     imageView.image = item.image;
     
     return cell;
@@ -76,7 +76,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BLCMedia *item = [BLCDatasource sharedInstace].mediaItems[indexPath.row];
+    BLCMedia *item = [self items][indexPath.row];
     UIImage *image = item.image;
     CGFloat scaledHeight  = (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
     return scaledHeight;
@@ -84,17 +84,17 @@
 
 - (NSInteger) numberOfItems
 {
-    NSInteger numberOfItems = [BLCDatasource sharedInstace].mediaItems.count;
+    NSInteger numberOfItems = [self items].count;
     return numberOfItems;
 }
 
-/*
-- (NSArray) items
+
+- (NSArray *) items
 {
     return [BLCDatasource sharedInstace].mediaItems;
     //doesn't work, not sure why
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

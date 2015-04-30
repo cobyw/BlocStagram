@@ -71,6 +71,7 @@
             [randomMediaItems addObject:media];
         }
     }
+    self.mediaItems = randomMediaItems;
 }
 
 - (BLCUser *) randomUser
