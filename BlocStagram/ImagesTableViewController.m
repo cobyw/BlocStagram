@@ -42,8 +42,9 @@
 #pragma mark - Table view data source
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [BLCDatasource sharedInstace].mediaItems.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self numberOfItems];
 }
 
 
@@ -81,8 +82,19 @@
     return scaledHeight;
 }
 
+- (NSInteger) numberOfItems
+{
+    NSInteger numberOfItems = [BLCDatasource sharedInstace].mediaItems.count;
+    return numberOfItems;
+}
 
-
+/*
+- (NSArray) items
+{
+    return [BLCDatasource sharedInstace].mediaItems;
+    //doesn't work, not sure why
+}
+*/
 
 /*
 // Override to support conditional editing of the table view.
