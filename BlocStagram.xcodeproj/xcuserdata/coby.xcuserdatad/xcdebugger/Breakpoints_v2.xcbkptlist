@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BlocStagram/ImagesTableViewController.m"
-            timestampString = "452059431.439173"
+            timestampString = "452300167.88884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-numberOfItems"
             landmarkType = "5">
          </BreakpointContent>
