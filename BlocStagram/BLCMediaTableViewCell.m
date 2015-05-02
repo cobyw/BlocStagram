@@ -72,6 +72,7 @@ static NSParagraphStyle *paragraphStyle;
     
     NSString *baseString = [NSString stringWithFormat:@"%@ %@", self.mediaItem.user.userName, self.mediaItem.caption];
     
+    //here there be bugs
     NSMutableAttributedString *mutableUsernameAndCaptionString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : [lightFont fontWithSize:usernameFontSize], NSParagraphStyleAttributeName : paragraphStyle}];
     
     NSRange usernameRange = [baseString rangeOfString:self.mediaItem.user.userName];
