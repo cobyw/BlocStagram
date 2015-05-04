@@ -29,7 +29,7 @@ static NSParagraphStyle *paragraphStyle;
 
 @implementation BLCMediaTableViewCell
 
--(void) load
++(void) load
 {
     lightFont = [UIFont fontWithName:@"HelveticaNeue-Thin" size:11];
     boldFont = [UIFont fontWithName:@"HelveticaNeue-Thin" size:11];
@@ -70,9 +70,17 @@ static NSParagraphStyle *paragraphStyle;
 {
     CGFloat usernameFontSize = 15;
     
-    NSString *baseString = [NSString stringWithFormat:@"%@ %@", self.mediaItem.user.userName, self.mediaItem.caption];
+    NSString *baseString = [[NSString alloc] init];
     
-    //here there be bugs
+    if (self.mediaItem.caption)
+    {
+        baseString = [NSString stringWithFormat:@"%@ %@", self.mediaItem.user.userName, self.mediaItem.caption];
+    }
+    else
+    {
+        baseString = self.mediaItem.user.userName;
+    }
+
     NSMutableAttributedString *mutableUsernameAndCaptionString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : [lightFont fontWithSize:usernameFontSize], NSParagraphStyleAttributeName : paragraphStyle}];
     
     NSRange usernameRange = [baseString rangeOfString:self.mediaItem.user.userName];
@@ -140,6 +148,19 @@ static NSParagraphStyle *paragraphStyle;
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
++(CGFloat) heightForMediaItem:(BLCMedia *)mediaItem width:(CGFloat)width
+{
+    BLCMediaTableViewCell *layoutCell = [[BLCMediaTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"layoutCell"];
+    
+    layoutCell.frame = CGRectMake(0, 0, width, CGFLOAT_MAX);
+    
+    layoutCell.mediaItem = mediaItem;
+    
+    [layoutCell layoutSubviews];
+    
+    return CGRectGetMaxY(layoutCell.commentLabel.frame);
 }
 
 @end

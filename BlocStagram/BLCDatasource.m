@@ -14,8 +14,6 @@
 
 @interface BLCDatasource ()
 
-@property (nonatomic, strong) NSMutableArray *mediaItems;
-
 @end
 
 @implementation BLCDatasource
@@ -78,10 +76,10 @@
 {
     BLCUser *user = [[BLCUser alloc] init];
     
-    user.userName = [self randomStringOfLength:arc4random_uniform(10)];
+    user.userName = [self randomCapitolStringOfLength:( 3+ arc4random_uniform(7))];
     
-    NSString *firstName = [self randomStringOfLength: arc4random_uniform(7)];
-    NSString *lastName = [self randomStringOfLength: arc4random_uniform(12)];
+    NSString *firstName = [self randomCapitolStringOfLength: (1 +arc4random_uniform(7))];
+    NSString *lastName = [self randomCapitolStringOfLength: (1 + arc4random_uniform(12))];
     user.fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     
     return user;
@@ -93,13 +91,13 @@
     
     comment.from = [self randomUser];
     
-    NSInteger wordCount = arc4random_uniform(20);
+    NSInteger wordCount = (1+arc4random_uniform(20));
     
     NSMutableString *randomSentence = [[NSMutableString alloc] init];
     
     for (int i = 0; i <= wordCount; i++)
     {
-        NSString *randomWord = [self randomStringOfLength:arc4random_uniform(12)];
+        NSString *randomWord = [self randomStringOfLength:(1 + arc4random_uniform(12))];
         [randomSentence appendFormat:@"%@ ", randomWord];
     }
     
@@ -123,5 +121,32 @@
     return [NSString stringWithString: randomStringToBeReturned];
 }
 
+
+- (NSString *) randomCapitolStringOfLength: (NSUInteger) length
+{
+    NSString *upperAlphabet = @"ABCDEFGHIJKLMNOPQRSTUVQXYZ";
+    NSString *lowerAlphabet = @"abcdefghijklmnopqrstuvwxyz";
+    NSUInteger alphaLegth = upperAlphabet.length;
+    
+    NSMutableString *randomStringToBeReturned = [NSMutableString string];
+    for (NSUInteger i = 0U; i < length; i++)
+    {
+        if ( i ==0 )
+        {
+            u_int32_t randomIndex = arc4random_uniform((u_int32_t) alphaLegth);
+            unichar characterToBeAppended = [upperAlphabet characterAtIndex:randomIndex];
+            [randomStringToBeReturned appendFormat:@"%C", characterToBeAppended];
+        }
+        else
+        {
+            u_int32_t randomIndex = arc4random_uniform((u_int32_t) alphaLegth);
+            unichar characterToBeAppended = [lowerAlphabet characterAtIndex:randomIndex];
+            [randomStringToBeReturned appendFormat:@"%C", characterToBeAppended];
+        }
+        
+    }
+    
+    return [NSString stringWithString: randomStringToBeReturned];
+}
 
 @end

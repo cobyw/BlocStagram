@@ -50,28 +50,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
-//    
-//    // Configure the cell...
-//    
-//    static NSInteger imageViewTag = 1234;
-//    UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:imageViewTag];
-//    
-//    if(!imageView)
-//    {
-//        imageView = [[UIImageView alloc]init];
-//        imageView.contentMode = UIViewContentModeScaleToFill;
-//        
-//        imageView.frame = cell.contentView.bounds;
-//        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//        
-//        imageView.tag = imageViewTag;
-//        [cell.contentView addSubview:imageView];
-//    }
-//    
-//    BLCMedia *item = [self items][indexPath.row];
-//    imageView.image = item.image;
-    
     
     BLCMediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
     cell.mediaItem = [self items][indexPath.row];
@@ -82,9 +60,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BLCMedia *item = [self items][indexPath.row];
-    UIImage *image = item.image;
-    CGFloat scaledHeight  = 300 +((CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height);
-    return scaledHeight;
+    return [BLCMediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
 
 - (NSInteger) numberOfItems
@@ -97,29 +73,27 @@
 - (NSArray *) items
 {
     return [BLCDatasource sharedInstace].mediaItems;
-    //doesn't work, not sure why
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
-*/
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        /*
+        
         NSInteger rowNumber = indexPath.row;
         [[BLCDatasource sharedInstace].mediaItems removeObjectAtIndex:rowNumber];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        */
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
