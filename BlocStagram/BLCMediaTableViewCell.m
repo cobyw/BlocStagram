@@ -194,6 +194,10 @@ static NSParagraphStyle *paragraphStyle;
 //    self.usernameAndCaptionLabelHeightConstraint.constant = usernameLabelSize.height + 20;
 //    self.commentLabelHeightConstraint.constant = commentLabelSize.height +20;
     
+    CGFloat imageHeight = self.mediaItem.image.size.height / self.mediaItem.image.size.width * CGRectGetWidth(self.contentView.bounds);
+    
+    self.mediaImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds)/2, imageHeight);
+    
     // Hide the line between cells
     self.separatorInset = UIEdgeInsetsMake(0, 0, 0, CGRectGetWidth(self.bounds));
 }
