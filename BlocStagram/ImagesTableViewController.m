@@ -20,11 +20,7 @@
 
 @implementation ImagesTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
-}
+#pragma mark - Init/Dealloc
 
 -(id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,6 +30,22 @@
     }
     return self;
 }
+
+-(void) dealloc
+{
+    [[BLCDatasource sharedInstace] removeObserver:self forKeyPath:@"mediaItems"];
+}
+
+
+#pragma mark - View Lifecycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [[BLCDatasource sharedInstace] addObserver:self forKeyPath:@"mediaItems" options:0 context:nil];
+    
+    [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -87,18 +99,57 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        
-        NSInteger rowNumber = indexPath.row;
-        [[BLCDatasource sharedInstace].mediaItems removeObjectAtIndex:rowNumber];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        BLCMedia *item = [BLCDatasource sharedInstace].mediaItems[indexPath.row];
+        [[BLCDatasource sharedInstace] deleteMediaItem:item];
+    }
 }
 
+
+#pragma mark - KVO
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == [BLCDatasource sharedInstace] && [keyPath isEqualToString:@"mediaItems"]) {
+        int kindOfChange = [change[NSKeyValueChangeKindKey] intValue];
+        
+        if (kindOfChange == NSKeyValueChangeSetting) {
+            //if someone set a brand new images array
+            [self.tableView reloadData];
+        }
+        else if (kindOfChange == NSKeyValueChangeInsertion ||
+                 kindOfChange == NSKeyValueChangeRemoval ||
+                 kindOfChange == NSKeyValueChangeReplacement) {
+            //we have incremental change: inserted, deleted, or raplced images
+            //Get a list of the index or indexes that changed
+            NSIndexSet *indexSetOfChanges = change[NSKeyValueChangeIndexesKey];
+            
+            //convert from indexset to an array of index paths
+            NSMutableArray *indexPathsThatChanged = [NSMutableArray array];
+            [indexSetOfChanges enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+                NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                [indexPathsThatChanged addObject:newIndexPath];
+            }];
+            
+            [self.tableView beginUpdates];
+            
+            //tell the table view what the changes are
+            if (kindOfChange == NSKeyValueChangeInsertion)
+            {
+                [self.tableView insertRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else if (kindOfChange == NSKeyValueChangeRemoval)
+            {
+                [self.tableView deleteRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else if (kindOfChange == NSKeyValueChangeReplacement)
+            {
+                [self.tableView reloadRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            
+            //tell the table view we're done telling about changes and to complete the animation
+            [self.tableView endUpdates];
+        }
+    }
+}
 
 /*
 // Override to support rearranging the table view.

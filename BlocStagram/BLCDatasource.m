@@ -178,4 +178,10 @@
     [_mediaItems replaceObjectAtIndex:index withObject:object];
 }
 
+- (void) deleteMediaItem:(BLCMedia *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    
+    [mutableArrayWithKVO removeObject:item];
+}
+
 @end
