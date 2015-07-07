@@ -17,6 +17,9 @@
     NSMutableArray *_mediaItems;
 }
 
+@property (nonatomic, assign) BOOL isRefreshing;
+@property (nonatomic, assign) BOOL isLoadingOlderItems;
+
 @end
 
 @implementation BLCDatasource
@@ -182,6 +185,46 @@
     NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
     
     [mutableArrayWithKVO removeObject:item];
+}
+
+#pragma - Get new/old items
+
+-(void) requestNewItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
+    if (!self.isRefreshing) {
+        self.isRefreshing = YES;
+        BLCMedia *media = [[BLCMedia alloc] init];
+        media.user = [self randomUser];
+        media.image = [UIImage imageNamed:@"10.jpg"];
+        media.caption = [self randomCapitolStringOfLength:7];
+        
+        NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+        [mutableArrayWithKVO insertObject:media atIndex:0];
+        
+        self.isRefreshing = NO;
+        
+        if (completionHandler) {
+            completionHandler(nil);
+        }
+    }
+}
+
+-(void) requestOldItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
+    if (!self.isLoadingOlderItems) {
+        self.isLoadingOlderItems = YES;
+        BLCMedia *media = [[BLCMedia alloc] init];
+        media.user = [self randomUser];
+        media.image = [UIImage imageNamed:@"1.jpg"];
+        media.caption = [self randomCapitolStringOfLength:7];
+        
+        NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+        [mutableArrayWithKVO addObject:media];
+        
+        self.isLoadingOlderItems = NO;
+        
+        if(completionHandler) {
+            completionHandler(nil);
+        }
+    }
 }
 
 @end
